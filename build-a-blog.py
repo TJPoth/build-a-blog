@@ -19,8 +19,24 @@ class Handler(webapp2.RequestHandler):
     def render(self, template, **kw):
         self.write(self.render_str(template, **kw))
 
-class MainPage(Handler):
-    def get(self):
-        self.write("Blog!")
+class bloglist(db.Model):
+    title = db.StringProperty(required=True)
+    body = db.TextProperty(required=True)
+    created = db.DateTimeProperty(auto_now_add=True)
 
-app = webapp2.WSGIApplication([('/', MainPage)], debug=True)
+class HomePage(Handler):
+    def render_front(self, title="", body="", error=""):
+        self.render("blog.html", title=title, body=body, error=error)
+    def get(self):
+        self.render_front()
+    def post(self):
+        title = self.request.get("title")
+        body = self.request.get("body")
+
+        if title and body:
+            b = bloglist(title = title, body = body)
+            b.put()
+
+        self.redirect('/')
+
+app = webapp2.WSGIApplication([('/', HomePage)], debug=True)
