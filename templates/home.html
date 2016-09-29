@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Welcome to my blog!</h2>
+<p>My name is TJ and this is where my family, friends, you, or even your dog
+can keep up with my day-to-day life! I post updates regularly, at the very least
+once a week, and sometimes every day that week - depending on how eventful it's
+been! Hope you get a good laugh or can learn some lessons from my life.</p>
+
+<form action="/newpost" method="get">
+  <input type="submit" value="New Post!">
+</form>
+
+<hr>
+
+{% for blog in blogs %}
+  <div class="blogs"></div>
+    <div class="blogs-title">{{blog.title}}</div>
+    <div class="blogs-body">{{blog.body}}</div>
+    <div class="blogs-date">{{blog.created}}</div>
+{% endfor %}
+
+<form action="/all-blogs" method="get">
+  <label>
+    <input type="submit" value="View all!">
+
+{% endblock %}

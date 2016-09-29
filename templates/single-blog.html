@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form action='/'>
+  <input type="submit" value="Return Home">
+</form>
+
+<div class="blogs"></div>
+  <div class="blogs-title">{{blog.title}}</a></div>
+  <div class="blogs-body">{{blog.body}}</div>
+  <div class="blogs-date">{{blog.created}}</div>
+
+{% endblock %}

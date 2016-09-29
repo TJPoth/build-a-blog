@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form action='/'>
+  <input type="submit" value="Return Home">
+</form>
+
+{% for n in range(0, (post_id|length)) %}
+<div class="blogs"></div>
+  <div class="blogs-title"><a href="/blog/{{post_id[n]}}">{{allblogs[n].title}}</a></div>
+  <div class="blogs-body">{{allblogs[n].body}}</div>
+  <div class="blogs-date">{{allblogs[n].created}}</div>
+{% endfor %}
+
+{% endblock %}
