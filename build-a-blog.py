@@ -48,6 +48,8 @@ class NewPost(Handler):
     def post(self):
         title = self.request.get("title")
         body = self.request.get("body")
+        title = title.strip()
+        body = body.strip()
 
         if title and body:
             post = BlogPosts(title = title, body = body)
